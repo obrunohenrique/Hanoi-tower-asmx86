@@ -124,3 +124,6 @@ done:
     pop ebp             ; Restaura o valor original de EBP
     ret                 ; Retorna da função
 
+; nasm -f elf32 main.asm -o main.o
+; ld -m elf_i386 main.o -o main
+; ./main
