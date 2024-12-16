@@ -14,7 +14,7 @@ section .text
     global _start
 
 _start:
-    mov ecx, 11 ; numero de discos
+    mov ecx, 10 ; numero de discos
     push ecx
     push origem
     push auxiliar
