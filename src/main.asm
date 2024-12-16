@@ -1,5 +1,8 @@
 section .data
 
+    mova db 'Faca a movimentacao: '
+    lenmova equ $ - mova
+    
     origem db "A"
     len equ $ - origem
     auxiliar db "B"
@@ -11,7 +14,7 @@ section .text
     global _start
 
 _start:
-    mov ecx, 3
+    mov ecx, 11 ; numero de discos
     push ecx
     push origem
     push auxiliar
@@ -23,7 +26,7 @@ _start:
 
 mostrar:
     push ebp
-    mov ebp, esp
+    mov ebp, esp                        
     mov edx, len
     mov ecx, [ebp+8]
     mov ebx, 1
@@ -50,6 +53,12 @@ processahanoi:
     push eax
     call processahanoi
     add esp, 16         ; Limpa a pilha após chamada
+    
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, mova
+    mov edx, lenmova
+    int 0x80
 
     mov eax, [ebp+16]   ; Pega a origem
     push eax
@@ -67,6 +76,7 @@ processahanoi:
     mov ebx, 1
     mov ecx, linha
     mov edx, 1
+    
     int 0x80
     
 
@@ -85,6 +95,13 @@ processahanoi:
     jmp done
 
 casoBase:
+
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, mova
+    mov edx, lenmova
+    int 0x80
+
     mov eax, [ebp+16]   ; Pega a origem
     push eax
     call mostrar
